@@ -15,7 +15,7 @@ namespace DoctorAppointment.Data.Repositories
             dynamic result = ReadFromAppSettings();
 
             Path = System.IO.Path.Combine(Constants.solutionPath, result.Database.Patients.Path.Value);
-            LastId = result.Database.Doctors.LastId;
+            LastId = result.Database.Patients.LastId;
         }
         public override void ShowInfo(Patient patient)
         {
