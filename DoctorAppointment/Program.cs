@@ -65,6 +65,7 @@ namespace MyDoctorAppointment
 
         private void AddAppointment()
         {
+            Console.WriteLine("Adding appointment.");
             Doctor doctor = _doctorService.GetAll().LastOrDefault();
             if (doctor == null) 
             {
@@ -99,6 +100,7 @@ namespace MyDoctorAppointment
             };
 
            _appointmentService.Create(appointment);
+            Console.WriteLine($"Appointment added for {appointment.Patient.Name} {appointment.Patient} to {doctor.DoctorType} for {appointment.DateTimeFrom}.");
         }
 
         private void ShowAllDoctors()
