@@ -1,6 +1,8 @@
-﻿using MyDoctorAppointment.Data.Configuration;
+﻿using DoctorAppointment.Data.Configuration;
+using MyDoctorAppointment.Data.Configuration;
 using MyDoctorAppointment.Data.Interfaces;
 using MyDoctorAppointment.Domain.Entities;
+using Newtonsoft.Json;
 
 namespace MyDoctorAppointment.Data.Repositories
 {
@@ -12,9 +14,9 @@ namespace MyDoctorAppointment.Data.Repositories
 
         public DoctorRepository()
         {
-            dynamic result = ReadFromAppSettings();
+            AppSettings result = ReadFromAppSettings();
 
-            Path = System.IO.Path.Combine(Constants.solutionPath, result.Database.Doctors.Path.Value);
+            Path = System.IO.Path.Combine(Constants.solutionPath, result.Database.Doctors.Path);
             LastId = result.Database.Doctors.LastId;
         }
 
@@ -25,10 +27,10 @@ namespace MyDoctorAppointment.Data.Repositories
 
         protected override void SaveLastId()
         {
-            dynamic result = ReadFromAppSettings();
+            AppSettings result = ReadFromAppSettings();
             result.Database.Doctors.LastId = LastId;
 
-            File.WriteAllText(Constants.AppSettingsPath, result.ToString());
+            File.WriteAllText(Constants.AppSettingsPath, JsonConvert.SerializeObject(result, Formatting.Indented));
         }
     }
 }
