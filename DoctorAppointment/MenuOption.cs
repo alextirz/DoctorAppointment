@@ -4,8 +4,8 @@
     {
         ShowAllDoctors = 1,
         AddDoctor,
-        Exit,
         AddPatient,
         AddAppointment,
+        Exit,
     }
 }

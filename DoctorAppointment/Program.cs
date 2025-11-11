@@ -1,5 +1,6 @@
 ﻿using DoctorAppointment.UI;
 using MyDoctorAppointment.Domain.Entities;
+using MyDoctorAppointment.Domain.Enums;
 using MyDoctorAppointment.Service.Interfaces;
 using MyDoctorAppointment.Service.Services;
 
@@ -8,10 +9,14 @@ namespace MyDoctorAppointment
     public class DoctorAppointment
     {
         private readonly IDoctorService _doctorService;
+        private readonly IPatientService _patientService;
+        private readonly IAppointmentService _appointmentService;
 
         public DoctorAppointment()
         {
             _doctorService = new DoctorService();
+            _patientService = new PatientService();
+            _appointmentService = new AppointmentService();
         }
 
         public void Menu()
@@ -22,7 +27,9 @@ namespace MyDoctorAppointment
                 Console.WriteLine("\n=== Doctor Appointment Menu ===");
                 Console.WriteLine("1. Show all doctors");
                 Console.WriteLine("2. Add new doctor");
-                Console.WriteLine("3. Exit");
+                Console.WriteLine("3. Add new patient");
+                Console.WriteLine("4. Add new appointment");
+                Console.WriteLine("5. Exit");
                 Console.Write("Choose an option: ");
 
                 if (!int.TryParse(Console.ReadLine(), out int choice) || !Enum.IsDefined(typeof(MenuOption), choice))
@@ -41,11 +48,57 @@ namespace MyDoctorAppointment
                         AddDoctor();
                         break;
 
+                    case MenuOption.AddPatient:
+                        AddPatient();
+                        break;
+
+                    case MenuOption.AddAppointment:
+                        AddAppointment();
+                        break;
+
                     case MenuOption.Exit:
                         Console.WriteLine("Exiting...");
                         return;
                 }
             }
+        }
+
+        private void AddAppointment()
+        {
+            Doctor doctor = _doctorService.GetAll().LastOrDefault();
+            if (doctor == null) 
+            {
+                doctor = new Doctor
+                {
+                    Name = "Vasyl",
+                    Surname = "Petrenko",
+                    Experience = 25,
+                    DoctorType = DoctorTypes.Dentist
+                };
+                _doctorService.Create(doctor);
+            }
+
+            Patient patient = _patientService.GetAll().LastOrDefault();
+            if (patient == null)
+            {
+                patient = new Patient
+                {
+                    Name = "Oksana",
+                    Surname = "B",
+                    IllnessType = IllnessTypes.Ambulance,
+                };
+                _patientService.Create(patient);
+            }
+
+            var appointment = new Appointment
+            {
+                Patient = patient,
+                Doctor = doctor,
+                DateTimeFrom = DateTime.Now,
+                DateTimeTo = DateTime.Now.AddMinutes(30),
+            };
+
+           _appointmentService.Create(appointment);
         }
 
         private void ShowAllDoctors()
@@ -73,7 +126,7 @@ namespace MyDoctorAppointment
             string name = ReadValidString("Enter name: ");
             string surname = ReadValidString("Enter surname: ");
             byte experience = ReadValidNumber("Enter experience (0–50 years): ");
-            var doctorType = ReadValidDoctorType();
+            var doctorType = ReadValidEnum<DoctorTypes>("doctor type");
 
             var newDoctor = new Doctor
             {
@@ -85,6 +138,27 @@ namespace MyDoctorAppointment
 
             _doctorService.Create(newDoctor);
             Console.WriteLine($"Doctor {name} {surname} added successfully!");
+        }
+        private void AddPatient()
+        {
+            Console.WriteLine("Adding patient.");
+
+            string name = ReadValidString("Enter name: ");
+            string surname = ReadValidString("Enter surname: ");
+            var illnessType = ReadValidEnum<IllnessTypes>("illness type");
+            string address = ReadValidString("Enter address: ");
+
+            var patient = new Patient
+            {
+                Name = name,
+                Surname = surname,
+                IllnessType = illnessType,
+                Address = address,
+                Phone = "1234234132",
+            };
+
+            _patientService.Create(patient);
+            Console.WriteLine($"Patient {name} {surname} added successfully!");
         }
 
         private string ReadValidString(string prompt)
@@ -127,25 +201,25 @@ namespace MyDoctorAppointment
 
             return experience;
         }
-
-        private Domain.Enums.DoctorTypes ReadValidDoctorType()
+        private T ReadValidEnum<T>(string title) where T : struct, Enum
         {
-            Console.WriteLine("Choose doctor type:");
-            foreach (var type in Enum.GetValues(typeof(Domain.Enums.DoctorTypes)))
+            Console.WriteLine($"\nChoose {title}:");
+
+            foreach (var value in Enum.GetValues(typeof(T)))
             {
-                Console.WriteLine($"{(int)type}. {type}");
+                Console.WriteLine($"{Convert.ToInt32(value)}. {value}");
             }
 
             while (true)
             {
                 Console.Write("Enter number: ");
                 if (int.TryParse(Console.ReadLine(), out int num) &&
-                    Enum.IsDefined(typeof(Domain.Enums.DoctorTypes), num))
+                    Enum.IsDefined(typeof(T), num))
                 {
-                    return (Domain.Enums.DoctorTypes)num;
+                    return (T)Enum.ToObject(typeof(T), num);
                 }
 
-                Console.WriteLine("Invalid choice. Please enter a valid doctor type number.");
+                Console.WriteLine("Invalid choice. Please try again.");
             }
         }
     }
