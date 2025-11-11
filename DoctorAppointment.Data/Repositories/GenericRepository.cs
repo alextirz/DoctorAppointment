@@ -1,4 +1,5 @@
-﻿using MyDoctorAppointment.Data.Configuration;
+﻿using DoctorAppointment.Data.Configuration;
+using MyDoctorAppointment.Data.Configuration;
 using MyDoctorAppointment.Data.Interfaces;
 using MyDoctorAppointment.Domain.Entities;
 using Newtonsoft.Json;
@@ -61,7 +62,6 @@ namespace MyDoctorAppointment.Data.Repositories
             source.Id = id;
 
             File.WriteAllText(Path, JsonConvert.SerializeObject(GetAll().Select(x => x.Id == id ? source : x), Formatting.Indented));
-
             return source;
         }
 
@@ -69,6 +69,6 @@ namespace MyDoctorAppointment.Data.Repositories
 
         protected abstract void SaveLastId();
 
-        protected dynamic ReadFromAppSettings() => JsonConvert.DeserializeObject<dynamic>(File.ReadAllText(Constants.AppSettingsPath))!;
+        protected AppSettings ReadFromAppSettings() => JsonConvert.DeserializeObject<AppSettings>(File.ReadAllText(Constants.AppSettingsPath))!;
     }
 }

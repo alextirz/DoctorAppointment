@@ -1,1 +1,14 @@
-﻿
+[
+  {
+    "IllnessType": 2,
+    "AdditionalInfo": null,
+    "Address": "test@gmail.com",
+    "Name": "MyName",
+    "Surname": "MySurname",
+    "Phone": "1234234132",
+    "Email": null,
+    "Id": 1,
+    "CreatedAt": "2025-11-11T23:05:56.0741717+01:00",
+    "UpdatedAt": "0001-01-01T00:00:00"
+  }
+]
