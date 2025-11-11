@@ -10,5 +10,17 @@
     "Id": 1,
     "CreatedAt": "2025-11-11T23:05:56.0741717+01:00",
     "UpdatedAt": "0001-01-01T00:00:00"
+  },
+  {
+    "IllnessType": 5,
+    "AdditionalInfo": null,
+    "Address": "Kyiv",
+    "Name": "Name",
+    "Surname": "Surname1",
+    "Phone": "1234234132",
+    "Email": null,
+    "Id": 2,
+    "CreatedAt": "2025-11-12T00:18:09.2341883+01:00",
+    "UpdatedAt": "0001-01-01T00:00:00"
   }
 ]

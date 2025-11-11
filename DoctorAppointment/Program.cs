@@ -23,7 +23,6 @@ namespace MyDoctorAppointment
         {
             while (true)
             {
-                // add Enum for menu items and describe menu
                 Console.WriteLine("\n=== Doctor Appointment Menu ===");
                 Console.WriteLine("1. Show all doctors");
                 Console.WriteLine("2. Add new doctor");

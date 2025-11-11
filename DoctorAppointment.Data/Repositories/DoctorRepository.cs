@@ -22,7 +22,14 @@ namespace MyDoctorAppointment.Data.Repositories
 
         public override void ShowInfo(Doctor doctor)
         {
-            Console.WriteLine($"{doctor.Id}. {doctor.Name} {doctor.Surname} - {doctor.DoctorType}, {doctor.Experience} years experience.");
+            Console.WriteLine(
+                $"{doctor.Id} " +
+                $"{doctor.Name} {doctor.Surname}" +
+                $", Type: {doctor.DoctorType}" +
+                $"{(doctor.Experience > 0 ? $", Experience: {doctor.Experience} years" : "")}" +
+                $"{(doctor.Phone == null ? "" : ", Phone: " + doctor.Phone)}" +
+                $"{(doctor.Email == null ? "" : ", Email: " + doctor.Email)}" +
+                $"{(doctor.Salary > 0 ? $", Salary: {doctor.Salary}" : "")}");
         }
 
         protected override void SaveLastId()
