@@ -21,7 +21,14 @@ namespace DoctorAppointment.Data.Repositories
         }
         public override void ShowInfo(Patient patient)
         {
-            Console.WriteLine($"{patient.Id}. {patient.Name} {patient.Surname} - {patient.Email}, {patient.AdditionalInfo}.");
+            Console.WriteLine(
+                $"{patient.Id} {patient.Name} {patient.Surname}" +
+                $", Illness: {patient.IllnessType}" +
+                $"{(patient.Phone == null ? "" : ", Phone: " + patient.Phone)}" +
+                $"{(patient.Email == null ? "" : ", Email: " + patient.Email)}" +
+                $"{(string.IsNullOrWhiteSpace(patient.AdditionalInfo) ? "" : ", Info: " + patient.AdditionalInfo)}" +
+                $"{(string.IsNullOrWhiteSpace(patient.Address) ? "" : ", Address: " + patient.Address)}"
+            );
         }
 
         protected override void SaveLastId()

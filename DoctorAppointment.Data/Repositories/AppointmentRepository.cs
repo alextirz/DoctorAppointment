@@ -21,7 +21,14 @@ namespace DoctorAppointment.Data.Repositories
         }
         public override void ShowInfo(Appointment appointment)
         {
-            Console.WriteLine($"Appointment Id: {appointment.Id}, for patient {appointment.Patient.Name} {appointment.Patient.Surname} \nto Doctor {appointment.Doctor.Name} {appointment.Doctor.Surname} - {appointment.Doctor.DoctorType} \nfrom {appointment.DateTimeFrom} to {appointment.DateTimeFrom}. Description: {appointment.Description}");
+            Console.WriteLine(
+                $"Appointment with Id {appointment.Id}, for the patient: {appointment.Patient.Name} {appointment.Patient.Surname}" +
+                $"with Doctor: {appointment.Doctor.Name} {appointment.Doctor.Surname} - {appointment.Doctor.DoctorType}" +
+                $", From: {appointment.DateTimeFrom}" +
+                $", To: {appointment.DateTimeTo}" +
+                $"{(string.IsNullOrWhiteSpace(appointment.Description) ? "" : $", Description: {appointment.Description}")}" +
+                $", CreatedAt: {appointment.CreatedAt}, UpdatedAt: {appointment.UpdatedAt}"
+   );
         }
 
         protected override void SaveLastId()
