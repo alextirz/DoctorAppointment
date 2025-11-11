@@ -20,7 +20,7 @@ namespace MyDoctorAppointment.Data.Repositories
 
         public override void ShowInfo(Doctor doctor)
         {
-            Console.WriteLine(); // implement view of all object fields
+            Console.WriteLine($"{doctor.Id}. {doctor.Name} {doctor.Surname} - {doctor.DoctorType}, {doctor.Experience} years exp.");
         }
 
         protected override void SaveLastId()
