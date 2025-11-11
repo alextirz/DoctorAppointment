@@ -66,24 +66,88 @@ namespace MyDoctorAppointment
                 Console.WriteLine($"{doc.Id}. {doc.Name} {doc.Surname} - {doc.DoctorType}, {doc.Experience} years exp.");
             }
         }
-
         private void AddDoctor()
         {
-            Console.WriteLine("Adding doctor: ");
+            Console.WriteLine("Adding doctor.");
+
+            string name = ReadValidString("Enter name: ");
+            string surname = ReadValidString("Enter surname: ");
+            byte experience = ReadValidNumber("Enter experience (0–50 years): ");
+            var doctorType = ReadValidDoctorType();
 
             var newDoctor = new Doctor
             {
-                Name = "Vasyl",
-                Surname = "Petrenko",
-                Experience = 10,
-                DoctorType = Domain.Enums.DoctorTypes.Dentist
+                Name = name,
+                Surname = surname,
+                Experience = experience,
+                DoctorType = doctorType
             };
 
             _doctorService.Create(newDoctor);
-            Console.WriteLine($"Doctor {newDoctor.Name} {newDoctor.Surname} added successfully!");
-
+            Console.WriteLine($"Doctor {name} {surname} added successfully!");
         }
 
+        private string ReadValidString(string prompt)
+        {
+            string input;
+            while (true)
+            {
+                Console.Write(prompt);
+                input = Console.ReadLine()?.Trim();
+
+                if (string.IsNullOrWhiteSpace(input))
+                {
+                    Console.WriteLine("Value cannot be empty. Try again.");
+                    continue;
+                }
+
+                if (input.Length < 2)
+                {
+                    Console.WriteLine("Value must be at least 2 characters long.");
+                    continue;
+                }
+
+                break;
+            }
+
+            return input;
+        }
+
+        private byte ReadValidNumber(string prompt)
+        {
+            byte experience;
+            while (true)
+            {
+                Console.Write(prompt);
+                if (byte.TryParse(Console.ReadLine(), out experience) && experience <= 0)
+                    break;
+
+                Console.WriteLine("Invalid number. Please enter a value between 0 and 50.");
+            }
+
+            return experience;
+        }
+
+        private Domain.Enums.DoctorTypes ReadValidDoctorType()
+        {
+            Console.WriteLine("Choose doctor type:");
+            foreach (var type in Enum.GetValues(typeof(Domain.Enums.DoctorTypes)))
+            {
+                Console.WriteLine($"{(int)type}. {type}");
+            }
+
+            while (true)
+            {
+                Console.Write("Enter number: ");
+                if (int.TryParse(Console.ReadLine(), out int num) &&
+                    Enum.IsDefined(typeof(Domain.Enums.DoctorTypes), num))
+                {
+                    return (Domain.Enums.DoctorTypes)num;
+                }
+
+                Console.WriteLine("Invalid choice. Please enter a valid doctor type number.");
+            }
+        }
     }
 
     public static class Program
