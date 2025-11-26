@@ -233,8 +233,54 @@ namespace MyDoctorAppointment
     {
         public static void Main()
         {
-            var doctorAppointment = new DoctorAppointment(AppConstants.JsonAppSettingsPath, new JsonDataSerializerService());
+            var dbType = AskDatabaseType();
+            var doctorAppointment = CreateDoctorAppointment(dbType);
+
             doctorAppointment.Menu();
         }
+
+        private static DatabaseType AskDatabaseType()
+        {
+            Console.WriteLine("Choose database type:");
+            Console.WriteLine("1 - JSON");
+            Console.WriteLine("2 - XML");
+
+            while (true)
+            {
+                Console.Write("Your choice: ");
+                var input = Console.ReadLine();
+
+                if (int.TryParse(input, out int value) &&
+                    Enum.IsDefined(typeof(DatabaseType), value))
+                {
+                    return (DatabaseType)value;
+                }
+
+                Console.WriteLine("Invalid option. Try again.");
+            }
+        }
+
+        private static DoctorAppointment CreateDoctorAppointment(DatabaseType dbType)
+        {
+            switch (dbType)
+            {
+                case DatabaseType.Json:
+                    return new DoctorAppointment(
+                        AppConstants.JsonAppSettingsPath,
+                        new JsonDataSerializerService()
+                    );
+
+                case DatabaseType.Xml:
+                    return new DoctorAppointment(
+                        AppConstants.XmlAppSettingsPath,
+                        new XmlDataSerializerService()
+                    );
+
+                default:
+                    throw new ArgumentOutOfRangeException(nameof(dbType));
+            }
+        }
     }
+
+
 }

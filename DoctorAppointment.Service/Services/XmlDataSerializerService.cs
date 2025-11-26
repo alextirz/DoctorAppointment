@@ -17,7 +17,6 @@ namespace DoctorAppointment.Service.Services
         public void Serialize<T>(string path, T data)
         {
             var serializer = new XmlSerializer(typeof(T));
-          //  using (var writer = new StreamWriter(path))
             using (var writer = new FileStream(path, FileMode.OpenOrCreate))
             {
                 serializer.Serialize(writer, data);
