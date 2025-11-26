@@ -1,4 +1,5 @@
-﻿using MyDoctorAppointment.Data.Interfaces;
+﻿using DoctorAppointment.Data.Interfaces;
+using MyDoctorAppointment.Data.Interfaces;
 using MyDoctorAppointment.Data.Repositories;
 using MyDoctorAppointment.Domain.Entities;
 using MyDoctorAppointment.Service.Interfaces;
@@ -9,9 +10,9 @@ namespace MyDoctorAppointment.Service.Services
     {
         private readonly IDoctorRepository _doctorRepository;
 
-        public DoctorService()
+        public DoctorService(string appSettings, ISerializationService serializationService)
         {
-            _doctorRepository = new DoctorRepository();
+            _doctorRepository = new DoctorRepository(appSettings, serializationService);
         }
 
         public Doctor Create(Doctor doctor)

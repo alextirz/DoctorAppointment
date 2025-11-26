@@ -34,5 +34,17 @@
     "Id": 4,
     "CreatedAt": "2025-11-10T16:57:18.8769482+01:00",
     "UpdatedAt": "0001-01-01T00:00:00"
+  },
+  {
+    "DoctorType": 2,
+    "Experience": 49,
+    "Salary": 0.0,
+    "Name": "House",
+    "Surname": "Doc",
+    "Phone": null,
+    "Email": null,
+    "Id": 5,
+    "CreatedAt": "2025-11-26T21:10:32.5229982+01:00",
+    "UpdatedAt": "0001-01-01T00:00:00"
   }
 ]

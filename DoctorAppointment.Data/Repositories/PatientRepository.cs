@@ -1,22 +1,22 @@
-﻿using DoctorAppointment.Data.Configuration;
-using DoctorAppointment.Data.Interfaces;
+﻿using DoctorAppointment.Data.Interfaces;
 using MyDoctorAppointment.Data.Configuration;
 using MyDoctorAppointment.Data.Repositories;
 using MyDoctorAppointment.Domain.Entities;
-using Newtonsoft.Json;
 
 namespace DoctorAppointment.Data.Repositories
 {
     public class PatientRepository : GenericRepository<Patient>, IPatientRepository
     {
+        private readonly ISerializationService serializationService;
         public override string Path { get; set; }
         public override int LastId { get; set; }
 
-        public PatientRepository()
+        public PatientRepository(string appSettings, ISerializationService serializationService) : base(appSettings, serializationService)
         {
-            AppSettings result = ReadFromAppSettings();
+            this.serializationService = serializationService;
+            var result = ReadFromAppSettings();
 
-            Path = System.IO.Path.Combine(Constants.solutionPath, result.Database.Patients.Path);
+            Path = System.IO.Path.Combine(AppConstants.solutionPath, result.Database.Patients.Path);
             LastId = result.Database.Patients.LastId;
         }
         public override void ShowInfo(Patient patient)
@@ -33,10 +33,11 @@ namespace DoctorAppointment.Data.Repositories
 
         protected override void SaveLastId()
         {
-            AppSettings result = ReadFromAppSettings();
+            var result = ReadFromAppSettings();
             result.Database.Patients.LastId = LastId;
 
-            File.WriteAllText(Constants.AppSettingsPath, JsonConvert.SerializeObject(result, Formatting.Indented)); 
+            serializationService.Serialize(AppSettings, result);
+            //File.WriteAllText(Constants.JsonAppSettingsPath, JsonConvert.SerializeObject(result, Formatting.Indented)); 
         }
     }
 }

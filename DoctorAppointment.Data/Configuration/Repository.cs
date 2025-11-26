@@ -1,7 +1,7 @@
 ﻿namespace DoctorAppointment.Data.Configuration
 {
 
-    public class AppSettings
+    public class Repository
     {
         public DatabaseSettings Database { get; set; }
     }

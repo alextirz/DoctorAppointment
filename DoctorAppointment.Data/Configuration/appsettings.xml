@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Database>
+	<Doctors>
+		<LastId>0</LastId>
+		<Path>DoctorAppointment.Data\MockedDatabase\doctors.xml</Path>
+	</Doctors>
+	<Patients>
+		<LastId>0</LastId>
+		<Path>DoctorAppointment.Data\MockedDatabase\patients.xml</Path>
+	</Patients>
+	<Appointments>
+		<LastId>0</LastId>
+		<Path>DoctorAppointment.Data\MockedDatabase\appointments.xml</Path>
+	</Appointments>
+</Database>

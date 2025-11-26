@@ -1,8 +1,12 @@
-﻿using DoctorAppointment.UI;
+﻿using DoctorAppointment.Data.Interfaces;
+using DoctorAppointment.Service.Services;
+using DoctorAppointment.UI;
+using Microsoft.VisualBasic;
 using MyDoctorAppointment.Domain.Entities;
 using MyDoctorAppointment.Domain.Enums;
 using MyDoctorAppointment.Service.Interfaces;
 using MyDoctorAppointment.Service.Services;
+using MyDoctorAppointment.Data.Configuration;
 
 namespace MyDoctorAppointment
 {
@@ -12,11 +16,11 @@ namespace MyDoctorAppointment
         private readonly IPatientService _patientService;
         private readonly IAppointmentService _appointmentService;
 
-        public DoctorAppointment()
+        public DoctorAppointment(string appSettings, ISerializationService serializationService)
         {
-            _doctorService = new DoctorService();
-            _patientService = new PatientService();
-            _appointmentService = new AppointmentService();
+            _doctorService = new DoctorService(appSettings, serializationService);
+            _patientService = new PatientService(appSettings, serializationService);
+            _appointmentService = new AppointmentService(appSettings, serializationService);
         }
 
         public void Menu()
@@ -188,16 +192,16 @@ namespace MyDoctorAppointment
             return input;
         }
 
-        private byte ReadValidNumber(string prompt)
+        private byte ReadValidNumber(string prompt, int min = 0, int max = 50)
         {
             byte experience;
             while (true)
             {
                 Console.Write(prompt);
-                if (byte.TryParse(Console.ReadLine(), out experience) && experience <= 0)
+                if (byte.TryParse(Console.ReadLine(), out experience) && experience >= min && experience < max)
                     break;
 
-                Console.WriteLine("Invalid number. Please enter a value between 0 and 50.");
+                Console.WriteLine($"Invalid number. Please enter a value between {min} and {max}.");
             }
 
             return experience;
@@ -229,7 +233,7 @@ namespace MyDoctorAppointment
     {
         public static void Main()
         {
-            var doctorAppointment = new DoctorAppointment();
+            var doctorAppointment = new DoctorAppointment(AppConstants.JsonAppSettingsPath, new JsonDataSerializerService());
             doctorAppointment.Menu();
         }
     }

@@ -62,5 +62,37 @@
     "Id": 2,
     "CreatedAt": "2025-11-11T23:51:16.1011982+01:00",
     "UpdatedAt": "0001-01-01T00:00:00"
+  },
+  {
+    "Patient": {
+      "IllnessType": 5,
+      "AdditionalInfo": null,
+      "Address": "Kyiv",
+      "Name": "Name",
+      "Surname": "Surname1",
+      "Phone": "1234234132",
+      "Email": null,
+      "Id": 2,
+      "CreatedAt": "2025-11-12T00:18:09.2341883+01:00",
+      "UpdatedAt": "0001-01-01T00:00:00"
+    },
+    "Doctor": {
+      "DoctorType": 2,
+      "Experience": 49,
+      "Salary": 0.0,
+      "Name": "House",
+      "Surname": "Doc",
+      "Phone": null,
+      "Email": null,
+      "Id": 5,
+      "CreatedAt": "2025-11-26T21:10:32.5229982+01:00",
+      "UpdatedAt": "0001-01-01T00:00:00"
+    },
+    "DateTimeFrom": "2025-11-26T21:11:01.8458159+01:00",
+    "DateTimeTo": "2025-11-26T21:41:01.8458775+01:00",
+    "Description": null,
+    "Id": 3,
+    "CreatedAt": "2025-11-26T21:11:01.8460737+01:00",
+    "UpdatedAt": "0001-01-01T00:00:00"
   }
 ]

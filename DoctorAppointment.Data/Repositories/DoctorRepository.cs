@@ -1,4 +1,5 @@
 ﻿using DoctorAppointment.Data.Configuration;
+using DoctorAppointment.Data.Interfaces;
 using MyDoctorAppointment.Data.Configuration;
 using MyDoctorAppointment.Data.Interfaces;
 using MyDoctorAppointment.Domain.Entities;
@@ -8,17 +9,27 @@ namespace MyDoctorAppointment.Data.Repositories
 {
     public class DoctorRepository : GenericRepository<Doctor>, IDoctorRepository
     {
+        private readonly ISerializationService serializationService;
         public override string Path { get; set; }
 
         public override int LastId { get; set; }
 
-        public DoctorRepository()
+        public DoctorRepository(string appSettings, ISerializationService serializationService) : base(appSettings, serializationService)
         {
-            AppSettings result = ReadFromAppSettings();
+            this.serializationService = serializationService;
+            var result = ReadFromAppSettings();
+           // AppSettings result = ReadFromAppSettings();
 
-            Path = System.IO.Path.Combine(Constants.solutionPath, result.Database.Doctors.Path);
+            Path =  System.IO.Path.Combine(AppConstants.solutionPath, result.Database.Doctors.Path);
             LastId = result.Database.Doctors.LastId;
         }
+        //public DoctorRepository()
+        //{
+        //    AppSettings result = ReadFromAppSettings();
+
+        //    Path = System.IO.Path.Combine(Constants.solutionPath, result.Database.Doctors.Path);
+        //    LastId = result.Database.Doctors.LastId;
+        //}
 
         public override void ShowInfo(Doctor doctor)
         {
@@ -34,10 +45,11 @@ namespace MyDoctorAppointment.Data.Repositories
 
         protected override void SaveLastId()
         {
-            AppSettings result = ReadFromAppSettings();
+            var result = ReadFromAppSettings();
             result.Database.Doctors.LastId = LastId;
 
-            File.WriteAllText(Constants.AppSettingsPath, JsonConvert.SerializeObject(result, Formatting.Indented));
+            serializationService.Serialize(AppSettings, result);
+          //  File.WriteAllText(Constants.JsonAppSettingsPath, JsonConvert.SerializeObject(result, Formatting.Indented));
         }
     }
 }
