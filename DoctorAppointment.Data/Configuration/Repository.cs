@@ -1,6 +1,7 @@
-﻿namespace DoctorAppointment.Data.Configuration
-{
+﻿using System.Xml.Serialization;
 
+namespace DoctorAppointment.Data.Configuration
+{
     public class Repository
     {
         public DatabaseSettings Database { get; set; }

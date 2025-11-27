@@ -18,18 +18,10 @@ namespace MyDoctorAppointment.Data.Repositories
         {
             this.serializationService = serializationService;
             var result = ReadFromAppSettings();
-           // AppSettings result = ReadFromAppSettings();
 
             Path =  System.IO.Path.Combine(AppConstants.solutionPath, result.Database.Doctors.Path);
             LastId = result.Database.Doctors.LastId;
         }
-        //public DoctorRepository()
-        //{
-        //    AppSettings result = ReadFromAppSettings();
-
-        //    Path = System.IO.Path.Combine(Constants.solutionPath, result.Database.Doctors.Path);
-        //    LastId = result.Database.Doctors.LastId;
-        //}
 
         public override void ShowInfo(Doctor doctor)
         {

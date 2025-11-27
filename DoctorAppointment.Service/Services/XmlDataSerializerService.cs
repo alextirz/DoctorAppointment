@@ -9,7 +9,7 @@ namespace DoctorAppointment.Service.Services
         {
             var serializer = new XmlSerializer(typeof(T));
             using (var reader = new FileStream(path, FileMode.OpenOrCreate))
-            {
+            {  
                 return (T)serializer.Deserialize(reader);
             }
         }

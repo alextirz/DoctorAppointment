@@ -1,9 +1,7 @@
 ﻿using DoctorAppointment.Data.Configuration;
 using DoctorAppointment.Data.Interfaces;
-using MyDoctorAppointment.Data.Configuration;
 using MyDoctorAppointment.Data.Interfaces;
 using MyDoctorAppointment.Domain.Entities;
-using Newtonsoft.Json;
 
 namespace MyDoctorAppointment.Data.Repositories
 {
@@ -29,7 +27,6 @@ namespace MyDoctorAppointment.Data.Repositories
             var objects = GetAll().Append(source).ToList();
             SerializationService.Serialize(Path, objects);
 
-           // File.WriteAllText(Path, JsonConvert.SerializeObject(GetAll().Append(source), Formatting.Indented));
             SaveLastId();
 
             return source;
@@ -41,28 +38,13 @@ namespace MyDoctorAppointment.Data.Repositories
                 return false;
 
             SerializationService.Serialize(Path, GetAll().Where(x => x.Id != id));
-           // File.WriteAllText(Path, JsonConvert.SerializeObject(GetAll().Where(x => x.Id != id), Formatting.Indented));
 
             return true;
         }
 
         public IEnumerable<TSource> GetAll()
         {
-            //if (!File.Exists(Path))
-            //{
-            //    File.WriteAllText(Path, "[]");
-            //}
-
-            //var json = File.ReadAllText(Path);
-
-            //if (string.IsNullOrWhiteSpace(json))
-            //{
-            //    File.WriteAllText(Path, "[]");
-            //    json = "[]";
-            //}
-
-            //return JsonConvert.DeserializeObject<List<TSource>>(json)!;
-            return SerializationService.Deserialize<IEnumerable<TSource>>(Path);
+            return SerializationService.Deserialize<List<TSource>>(Path);
         }
 
         public TSource? GetById(int id)
@@ -76,7 +58,6 @@ namespace MyDoctorAppointment.Data.Repositories
             source.Id = id;
 
             SerializationService.Serialize(Path, GetAll().Select(x => x.Id == id ? source : x));
-           // File.WriteAllText(Path, JsonConvert.SerializeObject(GetAll().Select(x => x.Id == id ? source : x), Formatting.Indented));
             return source;
         }
 
@@ -86,7 +67,6 @@ namespace MyDoctorAppointment.Data.Repositories
 
         protected Repository ReadFromAppSettings()
         {
-            // return  JsonConvert.DeserializeObject<AppSettings>(File.ReadAllText(Constants.JsonAppSettingsPath))!;
             return SerializationService.Deserialize<Repository>(AppSettings);
         }
     }
