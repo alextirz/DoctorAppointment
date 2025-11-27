@@ -1,7 +1,7 @@
-﻿using MyDoctorAppointment.Domain.Entities;
+﻿using DoctorAppointment.Domain.Entities;
 
 
-namespace MyDoctorAppointment.Data.Interfaces
+namespace DoctorAppointment.Data.Interfaces
 {
     public interface IDoctorRepository : IGenericRepository<Doctor>
     {

@@ -1,14 +1,11 @@
-﻿using DoctorAppointment.Data.Interfaces;
+﻿using DoctorAppointment.Data.Configuration;
+using DoctorAppointment.Data.Interfaces;
+using DoctorAppointment.Domain.Entities;
+using DoctorAppointment.Domain.Enums;
+using DoctorAppointment.Service.Interfaces;
 using DoctorAppointment.Service.Services;
-using DoctorAppointment.UI;
-using Microsoft.VisualBasic;
-using MyDoctorAppointment.Domain.Entities;
-using MyDoctorAppointment.Domain.Enums;
-using MyDoctorAppointment.Service.Interfaces;
-using MyDoctorAppointment.Service.Services;
-using MyDoctorAppointment.Data.Configuration;
 
-namespace MyDoctorAppointment
+namespace DoctorAppointment.UI
 {
     public class DoctorAppointment
     {

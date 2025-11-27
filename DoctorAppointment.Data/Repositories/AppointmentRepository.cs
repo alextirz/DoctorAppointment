@@ -1,9 +1,6 @@
 ﻿using DoctorAppointment.Data.Configuration;
 using DoctorAppointment.Data.Interfaces;
-using MyDoctorAppointment.Data.Configuration;
-using MyDoctorAppointment.Data.Repositories;
-using MyDoctorAppointment.Domain.Entities;
-using Newtonsoft.Json;
+using DoctorAppointment.Domain.Entities;
 
 namespace DoctorAppointment.Data.Repositories
 {
@@ -39,7 +36,6 @@ namespace DoctorAppointment.Data.Repositories
             result.Database.Appointments.LastId = LastId;
 
             serializationService.Serialize(AppSettings, result);
-            //File.WriteAllText(Constants.JsonAppSettingsPath, JsonConvert.SerializeObject(result, Formatting.Indented));
         }
     }
 }

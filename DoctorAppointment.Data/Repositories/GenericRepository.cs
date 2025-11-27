@@ -1,9 +1,8 @@
 ﻿using DoctorAppointment.Data.Configuration;
 using DoctorAppointment.Data.Interfaces;
-using MyDoctorAppointment.Data.Interfaces;
-using MyDoctorAppointment.Domain.Entities;
+using DoctorAppointment.Domain.Entities;
 
-namespace MyDoctorAppointment.Data.Repositories
+namespace DoctorAppointment.Data.Repositories
 {
     public abstract class GenericRepository<TSource> : IGenericRepository<TSource> where TSource : Auditable
     {

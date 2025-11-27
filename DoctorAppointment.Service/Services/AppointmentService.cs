@@ -1,9 +1,9 @@
 ﻿using DoctorAppointment.Data.Interfaces;
 using DoctorAppointment.Data.Repositories;
-using MyDoctorAppointment.Domain.Entities;
-using MyDoctorAppointment.Service.Interfaces;
+using DoctorAppointment.Domain.Entities;
+using DoctorAppointment.Service.Interfaces;
 
-namespace MyDoctorAppointment.Service.Services
+namespace DoctorAppointment.Service.Services
 {
     public class AppointmentService : IAppointmentService
     {

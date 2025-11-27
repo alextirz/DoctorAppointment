@@ -1,7 +1,6 @@
-﻿using DoctorAppointment.Data.Interfaces;
-using MyDoctorAppointment.Data.Configuration;
-using MyDoctorAppointment.Data.Repositories;
-using MyDoctorAppointment.Domain.Entities;
+﻿using DoctorAppointment.Data.Configuration;
+using DoctorAppointment.Data.Interfaces;
+using DoctorAppointment.Domain.Entities;
 
 namespace DoctorAppointment.Data.Repositories
 {
@@ -36,8 +35,6 @@ namespace DoctorAppointment.Data.Repositories
             var result = ReadFromAppSettings();
             result.Database.Patients.LastId = LastId;
 
-            serializationService.Serialize(AppSettings, result);
-            //File.WriteAllText(Constants.JsonAppSettingsPath, JsonConvert.SerializeObject(result, Formatting.Indented)); 
-        }
+            serializationService.Serialize(AppSettings, result);        }
     }
 }

@@ -1,6 +1,6 @@
-﻿using MyDoctorAppointment.Domain.Entities;
+﻿using DoctorAppointment.Domain.Entities;
 
-namespace MyDoctorAppointment.Data.Interfaces
+namespace DoctorAppointment.Data.Interfaces
 {
     public interface IGenericRepository<TSource> where TSource : Auditable
     {

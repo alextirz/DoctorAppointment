@@ -1,6 +1,4 @@
-﻿using System.Xml.Serialization;
-
-namespace DoctorAppointment.Data.Configuration
+﻿namespace DoctorAppointment.Data.Configuration
 {
     public class Repository
     {

@@ -1,4 +1,4 @@
-﻿namespace MyDoctorAppointment.Data.Configuration
+﻿namespace DoctorAppointment.Data.Configuration
 {
     public static class AppConstants
     {
