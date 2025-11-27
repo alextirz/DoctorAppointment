@@ -1,2 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ArrayOfPatient />
+<ArrayOfPatient xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Patient>
+    <Id>1</Id>
+    <CreatedAt>2025-11-27T09:18:30.7309643+01:00</CreatedAt>
+    <UpdatedAt>0001-01-01T00:00:00</UpdatedAt>
+    <Name>Patient</Name>
+    <Surname>Very Sick</Surname>
+    <Phone>1234234132</Phone>
+    <IllnessType>DentalDisease</IllnessType>
+    <Address>London</Address>
+  </Patient>
+</ArrayOfPatient>

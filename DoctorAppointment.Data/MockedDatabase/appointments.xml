@@ -1,2 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ArrayOfAppointment />
+<ArrayOfAppointment xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Appointment>
+    <Id>1</Id>
+    <CreatedAt>2025-11-27T09:18:34.954555+01:00</CreatedAt>
+    <UpdatedAt>0001-01-01T00:00:00</UpdatedAt>
+    <Patient>
+      <Id>1</Id>
+      <CreatedAt>2025-11-27T09:18:30.7309643+01:00</CreatedAt>
+      <UpdatedAt>0001-01-01T00:00:00</UpdatedAt>
+      <Name>Patient</Name>
+      <Surname>Very Sick</Surname>
+      <Phone>1234234132</Phone>
+      <IllnessType>DentalDisease</IllnessType>
+      <Address>London</Address>
+    </Patient>
+    <Doctor>
+      <Id>2</Id>
+      <CreatedAt>2025-11-27T09:17:46.6836184+01:00</CreatedAt>
+      <UpdatedAt>0001-01-01T00:00:00</UpdatedAt>
+      <Name>Doctor</Name>
+      <Surname>Who</Surname>
+      <DoctorType>Dentist</DoctorType>
+      <Experience>49</Experience>
+      <Salary>0</Salary>
+    </Doctor>
+    <DateTimeFrom>2025-11-27T09:18:34.9544721+01:00</DateTimeFrom>
+    <DateTimeTo>2025-11-27T09:48:34.9544906+01:00</DateTimeTo>
+  </Appointment>
+</ArrayOfAppointment>

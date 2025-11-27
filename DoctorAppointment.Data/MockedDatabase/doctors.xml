@@ -1,2 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ArrayOfDoctor />
+<ArrayOfDoctor xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Doctor>
+    <Id>1</Id>
+    <CreatedAt>2025-11-27T09:17:27.1277556+01:00</CreatedAt>
+    <UpdatedAt>0001-01-01T00:00:00</UpdatedAt>
+    <Name>Doctor</Name>
+    <Surname>House</Surname>
+    <DoctorType>FamilyDoctor</DoctorType>
+    <Experience>30</Experience>
+    <Salary>0</Salary>
+  </Doctor>
+  <Doctor>
+    <Id>2</Id>
+    <CreatedAt>2025-11-27T09:17:46.6836184+01:00</CreatedAt>
+    <UpdatedAt>0001-01-01T00:00:00</UpdatedAt>
+    <Name>Doctor</Name>
+    <Surname>Who</Surname>
+    <DoctorType>Dentist</DoctorType>
+    <Experience>49</Experience>
+    <Salary>0</Salary>
+  </Doctor>
+</ArrayOfDoctor>
