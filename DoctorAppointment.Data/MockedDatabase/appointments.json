@@ -1,15 +1,15 @@
 [
   {
     "Patient": {
-      "IllnessType": 2,
+      "IllnessType": 5,
       "AdditionalInfo": null,
-      "Address": "test@gmail.com",
-      "Name": "MyName",
-      "Surname": "MySurname",
+      "Address": "Kyiv",
+      "Name": "Name",
+      "Surname": "Surname1",
       "Phone": "1234234132",
       "Email": null,
-      "Id": 1,
-      "CreatedAt": "2025-11-11T23:05:56.0741717+01:00",
+      "Id": 2,
+      "CreatedAt": "2025-11-12T00:18:09.2341883+01:00",
       "UpdatedAt": "0001-01-01T00:00:00"
     },
     "Doctor": {
@@ -20,47 +20,15 @@
       "Surname": "Petrov",
       "Phone": null,
       "Email": null,
-      "Id": 4,
-      "CreatedAt": "2025-11-10T16:57:18.8769482+01:00",
+      "Id": 1,
+      "CreatedAt": "2024-01-04T20:15:00.5742047+01:00",
       "UpdatedAt": "0001-01-01T00:00:00"
     },
-    "DateTimeFrom": "2025-11-11T23:17:10.1018432+01:00",
-    "DateTimeTo": "2025-11-11T23:47:10.1019161+01:00",
+    "DateTimeFrom": "2025-11-27T09:16:28.1540699+01:00",
+    "DateTimeTo": "2025-11-27T09:46:28.154151+01:00",
     "Description": null,
     "Id": 1,
-    "CreatedAt": "2025-11-11T23:17:10.1021512+01:00",
-    "UpdatedAt": "0001-01-01T00:00:00"
-  },
-  {
-    "Patient": {
-      "IllnessType": 2,
-      "AdditionalInfo": null,
-      "Address": "test@gmail.com",
-      "Name": "MyName",
-      "Surname": "MySurname",
-      "Phone": "1234234132",
-      "Email": null,
-      "Id": 1,
-      "CreatedAt": "2025-11-11T23:05:56.0741717+01:00",
-      "UpdatedAt": "0001-01-01T00:00:00"
-    },
-    "Doctor": {
-      "DoctorType": 1,
-      "Experience": 20,
-      "Salary": 0.0,
-      "Name": "Vasya",
-      "Surname": "Petrov",
-      "Phone": null,
-      "Email": null,
-      "Id": 4,
-      "CreatedAt": "2025-11-10T16:57:18.8769482+01:00",
-      "UpdatedAt": "0001-01-01T00:00:00"
-    },
-    "DateTimeFrom": "2025-11-11T23:51:16.1009219+01:00",
-    "DateTimeTo": "2025-11-12T00:21:16.1010059+01:00",
-    "Description": null,
-    "Id": 2,
-    "CreatedAt": "2025-11-11T23:51:16.1011982+01:00",
+    "CreatedAt": "2025-11-27T09:16:28.1543614+01:00",
     "UpdatedAt": "0001-01-01T00:00:00"
   }
 ]

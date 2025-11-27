@@ -8,4 +8,9 @@
         AddAppointment,
         Exit,
     }
+    public enum DatabaseType
+    {
+        Json = 1,
+        Xml = 2
+    }
 }
