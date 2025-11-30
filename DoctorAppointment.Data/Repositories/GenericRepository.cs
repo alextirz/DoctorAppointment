@@ -23,6 +23,7 @@ namespace MyDoctorAppointment.Data.Repositories
         {
             source.Id = ++LastId;
             source.CreatedAt = DateTime.Now;
+            source.UpdatedAt = DateTime.Now;
 
             var objects = GetAll().Append(source).ToList();
             SerializationService.Serialize(Path, objects);

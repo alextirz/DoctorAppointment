@@ -96,14 +96,14 @@ namespace MyDoctorAppointment
 
             var appointment = new Appointment
             {
-                Patient = patient,
-                Doctor = doctor,
+                PatientId = patient.Id,
+                DoctorId = doctor.Id,
                 DateTimeFrom = DateTime.Now,
                 DateTimeTo = DateTime.Now.AddMinutes(30),
             };
 
            _appointmentService.Create(appointment);
-            Console.WriteLine($"Appointment added for {appointment.Patient.Name} {appointment.Patient} to {doctor.DoctorType} for {appointment.DateTimeFrom}.");
+            Console.WriteLine($"Appointment added for {patient.Name} {patient.Surname} to {doctor.DoctorType} for {appointment.DateTimeFrom}.");
         }
 
         private void ShowAllDoctors()
@@ -128,9 +128,9 @@ namespace MyDoctorAppointment
         {
             Console.WriteLine("Adding doctor.");
 
-            string name = ReadValidString("Enter name: ");
-            string surname = ReadValidString("Enter surname: ");
-            byte experience = ReadValidNumber("Enter experience (0–50 years): ");
+            string name = ("Enter name: ").ReadValidString();
+            string surname = ("Enter surname: ").ReadValidString();
+            byte experience = ("Enter experience (0–50 years): ").ReadValidNumber();
             var doctorType = ReadValidEnum<DoctorTypes>("doctor type");
 
             var newDoctor = new Doctor
@@ -148,10 +148,10 @@ namespace MyDoctorAppointment
         {
             Console.WriteLine("Adding patient.");
 
-            string name = ReadValidString("Enter name: ");
-            string surname = ReadValidString("Enter surname: ");
+            string name = ("Enter name: ").ReadValidString();
+            string surname = ("Enter surname: ").ReadValidString();
             var illnessType = ReadValidEnum<IllnessTypes>("illness type");
-            string address = ReadValidString("Enter address: ");
+            string address = ("Enter address: ").ReadValidString();
 
             var patient = new Patient
             {
@@ -164,47 +164,6 @@ namespace MyDoctorAppointment
 
             _patientService.Create(patient);
             Console.WriteLine($"Patient {name} {surname} added successfully!");
-        }
-
-        private string ReadValidString(string prompt)
-        {
-            string input;
-            while (true)
-            {
-                Console.Write(prompt);
-                input = Console.ReadLine()?.Trim();
-
-                if (string.IsNullOrWhiteSpace(input))
-                {
-                    Console.WriteLine("Value cannot be empty. Try again.");
-                    continue;
-                }
-
-                if (input.Length < 2)
-                {
-                    Console.WriteLine("Value must be at least 2 characters long.");
-                    continue;
-                }
-
-                break;
-            }
-
-            return input;
-        }
-
-        private byte ReadValidNumber(string prompt, int min = 0, int max = 50)
-        {
-            byte experience;
-            while (true)
-            {
-                Console.Write(prompt);
-                if (byte.TryParse(Console.ReadLine(), out experience) && experience >= min && experience < max)
-                    break;
-
-                Console.WriteLine($"Invalid number. Please enter a value between {min} and {max}.");
-            }
-
-            return experience;
         }
         private T ReadValidEnum<T>(string title) where T : struct, Enum
         {
