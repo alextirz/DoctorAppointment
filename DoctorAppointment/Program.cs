@@ -96,14 +96,14 @@ namespace MyDoctorAppointment
 
             var appointment = new Appointment
             {
-                Patient = patient,
-                Doctor = doctor,
+                PatientId = patient.Id,
+                DoctorId = doctor.Id,
                 DateTimeFrom = DateTime.Now,
                 DateTimeTo = DateTime.Now.AddMinutes(30),
             };
 
            _appointmentService.Create(appointment);
-            Console.WriteLine($"Appointment added for {appointment.Patient.Name} {appointment.Patient} to {doctor.DoctorType} for {appointment.DateTimeFrom}.");
+            Console.WriteLine($"Appointment added for {patient.Name} {patient.Surname} to {doctor.DoctorType} for {appointment.DateTimeFrom}.");
         }
 
         private void ShowAllDoctors()

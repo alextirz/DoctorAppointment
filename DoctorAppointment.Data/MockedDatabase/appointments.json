@@ -1,34 +1,12 @@
 [
   {
-    "Patient": {
-      "IllnessType": 5,
-      "AdditionalInfo": null,
-      "Address": "Kyiv",
-      "Name": "Name",
-      "Surname": "Surname1",
-      "Phone": "1234234132",
-      "Email": null,
-      "Id": 2,
-      "CreatedAt": "2025-11-12T00:18:09.2341883+01:00",
-      "UpdatedAt": "0001-01-01T00:00:00"
-    },
-    "Doctor": {
-      "DoctorType": 1,
-      "Experience": 20,
-      "Salary": 0.0,
-      "Name": "Vasya",
-      "Surname": "Petrov",
-      "Phone": null,
-      "Email": null,
-      "Id": 1,
-      "CreatedAt": "2024-01-04T20:15:00.5742047+01:00",
-      "UpdatedAt": "0001-01-01T00:00:00"
-    },
-    "DateTimeFrom": "2025-11-27T09:16:28.1540699+01:00",
-    "DateTimeTo": "2025-11-27T09:46:28.154151+01:00",
+    "PatientId": 2,
+    "DoctorId": 1,
+    "DateTimeFrom": "2025-11-30T11:24:59.5933804+01:00",
+    "DateTimeTo": "2025-11-30T11:54:59.5934852+01:00",
     "Description": null,
     "Id": 1,
-    "CreatedAt": "2025-11-27T09:16:28.1543614+01:00",
+    "CreatedAt": "2025-11-30T11:24:59.5936922+01:00",
     "UpdatedAt": "0001-01-01T00:00:00"
   }
 ]
