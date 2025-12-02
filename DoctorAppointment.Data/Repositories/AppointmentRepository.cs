@@ -1,15 +1,17 @@
 ﻿using DoctorAppointment.Data.Configuration;
 using DoctorAppointment.Data.Interfaces;
 using MyDoctorAppointment.Data.Configuration;
+using MyDoctorAppointment.Data.Interfaces;
 using MyDoctorAppointment.Data.Repositories;
 using MyDoctorAppointment.Domain.Entities;
-using Newtonsoft.Json;
 
 namespace DoctorAppointment.Data.Repositories
 {
     public class AppointmentRepository : GenericRepository<Appointment>, IAppointmentRepository
     {
         private readonly ISerializationService serializationService;
+        private readonly DoctorRepository doctorRepository;
+        private readonly PatientRepository patientRepository;
         public override string Path { get; set; }
         public override int LastId { get; set; }
 
@@ -20,17 +22,22 @@ namespace DoctorAppointment.Data.Repositories
 
             Path = System.IO.Path.Combine(AppConstants.solutionPath, result.Database.Appointments.Path);
             LastId = result.Database.Appointments.LastId;
+            doctorRepository = new DoctorRepository(appSettings, serializationService);
+            patientRepository = new PatientRepository(appSettings, serializationService);
         }
+
         public override void ShowInfo(Appointment appointment)
         {
+            var doctor = doctorRepository.GetById(appointment.DoctorId);
+            var patient = patientRepository.GetById(appointment.PatientId);
+
             Console.WriteLine(
-                $"Appointment with Id {appointment.Id}, for the patient: {appointment.Patient.Name} {appointment.Patient.Surname}" +
-                $"with Doctor: {appointment.Doctor.Name} {appointment.Doctor.Surname} - {appointment.Doctor.DoctorType}" +
+                $"Appointment with Id {appointment.Id}, for the patient: {patient?.Name} {patient?.Surname}" +
+                $"with Doctor: {doctor?.Name} {doctor?.Surname} - {doctor?.DoctorType}" +
                 $", From: {appointment.DateTimeFrom}" +
                 $", To: {appointment.DateTimeTo}" +
                 $"{(string.IsNullOrWhiteSpace(appointment.Description) ? "" : $", Description: {appointment.Description}")}" +
-                $", CreatedAt: {appointment.CreatedAt}, UpdatedAt: {appointment.UpdatedAt}"
-   );
+                $", CreatedAt: {appointment.CreatedAt}, UpdatedAt: {appointment.UpdatedAt}");
         }
 
         protected override void SaveLastId()
@@ -39,7 +46,6 @@ namespace DoctorAppointment.Data.Repositories
             result.Database.Appointments.LastId = LastId;
 
             serializationService.Serialize(AppSettings, result);
-            //File.WriteAllText(Constants.JsonAppSettingsPath, JsonConvert.SerializeObject(result, Formatting.Indented));
         }
     }
 }
